@@ -18,7 +18,17 @@ color:#d4af37;
 font-size:36px;
 margin-bottom:15px;
 }
+.gold-text{
+color:#d4af37;
+font-size:58px;
+font-weight:800;
+letter-spacing:2px;
+text-transform:uppercase;
+}
 
+.wholesale h2 span:first-child{
+font-size:60px;
+}
 .wholesale p{
 color:#ddd;
 font-size:18px;
@@ -236,15 +246,25 @@ font-size:22px;
 font-weight:bold;
 margin-bottom:15px;
 }
-
 .buy-btn{
-background:#d4af37;
-color:#000;
-padding:12px 25px;
+display:inline-block;
+margin-top:15px;
+padding:15px 35px;
+background:linear-gradient(135deg,#d4af37,#f1c94b);
+color:#111;
+text-decoration:none;
+font-size:18px;
+font-weight:700;
 border:none;
-border-radius:30px;
-font-weight:bold;
+border-radius:50px;
 cursor:pointer;
+transition:.3s;
+box-shadow:0 10px 30px rgba(212,175,55,.35);
+}
+
+.buy-btn:hover{
+transform:translateY(-4px);
+box-shadow:0 15px 40px rgba(212,175,55,.5);
 }
 .business-partner{
 background:#1a1a1a;
@@ -277,6 +297,26 @@ margin:20px 0;
 color:#fff;
 margin:10px 0;
 font-size:17px;
+}
+  .feature-list{
+list-style:none;
+padding:0;
+margin:25px 0;
+}
+
+.feature-list li{
+background:#262626;
+margin:12px 0;
+padding:15px 18px;
+border-left:4px solid #d4af37;
+border-radius:10px;
+font-size:18px;
+transition:.3s;
+}
+
+.feature-list li:hover{
+transform:translateX(8px);
+background:#333;
 }
 .coming-soon{
 padding:80px 20px;
@@ -529,7 +569,11 @@ Featured Products
 
 <section class="wholesale">
 
-<h2>📦 VEDAS Wholesale</h2>
+<h2>
+<span>📦</span><br>
+VEDAS<br>
+<span class="gold-text">Wholesale</span>
+</h2>
 
 <p>Bulk Orders Welcome • Shopkeepers • Boutique Owners</p>
 
@@ -537,12 +581,12 @@ Featured Products
 
 <div class="wholesale-box">
 <h3>Why Choose VEDAS?</h3>
-<ul>
-<li>✔ Premium Quality</li>
-<li>✔ Best Wholesale Prices</li>
-<li>✔ PAN India Delivery</li>
-<li>✔ Fast WhatsApp Support</li>
-<li>✔ Trusted Business</li>
+<ul class="feature-list">
+<li>⭐ Premium Quality Products</li>
+<li>💰 Best Wholesale Prices</li>
+<li>🚚 PAN India Delivery</li>
+<li>⚡ Fast WhatsApp Support</li>
+<li>🤝 Trusted Business Partner</li>
 </ul>
 
 <a href="https://wa.me/917052115353" class="buy-btn">📱 WhatsApp Now</a>
@@ -554,11 +598,11 @@ Featured Products
 <h3>🚀 VEDAS Business Partner Program</h3>
 <p><strong>Start Your Fashion Business with Just ₹5,000 – ₹10,000</strong></p>
 <p>VEDAS Creations सिर्फ़ कपड़ों का व्यापार नहीं करता, बल्कि छोटे व्यापारियों, महिलाओं, युवाओं और नए उद्यमियों को कम पूंजी में अपना व्यवसाय शुरू करने और आगे बढ़ाने में सहयोग देने का प्रयास करता है।</p>
-<ul>
-<li>✔ Business Guidance</li>
-<li>✔ Wholesale Support</li>
-<li>✔ Low Investment Opportunity</li>
-<li>✔ PAN India Supply</li>
+<ul class="feature-list">
+<li>📈 Business Guidance</li>
+<li>🏪 Wholesale Support</li>
+<li>💵 Low Investment Opportunity</li>
+<li>🇮🇳 PAN India Supply</li>
 </ul>
 <a href="https://wa.me/917052115353?text=Hello%20VEDAS,%20I%20want%20to%20start%20my%20business." class="buy-btn">🚀 Start Your Business</a>
 </div>
