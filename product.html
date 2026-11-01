@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Product Details | VEDAS</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.product-detail-page {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 20px;
+    color: #222;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #7A1F2B;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.product-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+}
+
+.product-detail-image img {
+    width: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.product-detail-info h1 {
+    margin: 15px 0;
+}
+
+.detail-price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #7A1F2B;
+}
+
+.detail-old-price {
+    font-size: 17px;
+    text-decoration: line-through;
+    color: #888;
+    margin-left: 10px;
+}
+
+.detail-option {
+    margin: 22px 0;
+}
+
+.detail-option button {
+    padding: 10px 16px;
+    margin: 5px;
+    border: 1px solid #aaa;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.detail-option button.selected {
+    background: #7A1F2B;
+    color: white;
+}
+
+.detail-buy {
+    width: 100%;
+    padding: 15px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 7px;
+    background: #7A1F2B;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.detail-cart {
+    background: #D4AF37;
+    color: #111;
+}
+
+#message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+@media(max-width:700px) {
+    .product-detail-layout {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="product-detail-page">
+
+<a href="index.html" class="back-link">
+← Back to VEDAS
+</a>
+
+<div class="product-detail-layout">
+
+<div class="product-detail-image">
+<img
+src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800"
+alt="Women's Kurti">
+</div>
+
+<div class="product-detail-info">
+
+<span>✨ VEDAS COLLECTION</span>
+
+<h1>Women's Kurti</h1>
+
+<div>⭐⭐⭐⭐⭐ (4.9 Rating)</div>
+
+<p class="detail-price">
+₹799
+<span class="detail-old-price">₹999</span>
+</p>
+
+<p>
+Premium Fashion Collection by Pallavi By VEDAS Creations.
+</p>
+
+<div class="detail-option">
+<strong>Select Size</strong><br>
+
+<button onclick="selectOption(this,'size')">S</button>
+<button onclick="selectOption(this,'size')">M</button>
+<button onclick="selectOption(this,'size')">L</button>
+<button onclick="selectOption(this,'size')">XL</button>
+</div>
+
+<div class="detail-option">
+<strong>Select Colour</strong><br>
+
+<button onclick="selectOption(this,'colour')">Red</button>
+<button onclick="selectOption(this,'colour')">Black</button>
+<button onclick="selectOption(this,'colour')">Blue</button>
+</div>
+
+<div class="detail-option">
+<strong>Quantity</strong><br>
+
+<button onclick="changeQty(-1)">−</button>
+<span id="quantity">1</span>
+<button onclick="changeQty(1)">+</button>
+</div>
+
+<button class="detail-buy detail-cart" onclick="addToCart()">
+🛒 ADD TO CART
+</button>
+
+<button class="detail-buy" onclick="buyNow()">
+BUY NOW
+</button>
+
+<p id="message"></p>
+
+</div>
+</div>
+</div>
+
+<script>
+let quantity = 1;
+let selectedSize = "";
+let selectedColour = "";
+
+function selectOption(button, type) {
+
+    const parent = button.parentElement;
+
+    parent.querySelectorAll("button").forEach(function(b) {
+        b.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    if (type === "size") {
+        selectedSize = button.textContent;
+    }
+
+    if (type === "colour") {
+        selectedColour = button.textContent;
+    }
+}
+
+function changeQty(value) {
+
+    quantity = Math.max(1, quantity + value);
+
+    document.getElementById("quantity").textContent = quantity;
+}
+
+function addToCart() {
+
+    if (!selectedSize || !selectedColour) {
+        document.getElementById("message").textContent =
+        "Please select size and colour first.";
+        return false;
+    }
+
+    let cart = JSON.parse(
+        localStorage.getItem("vedasCart") || "[]"
+    );
+
+    cart.push({
+        name: "Women's Kurti",
+        price: 799,
+        size: selectedSize,
+        colour: selectedColour,
+        quantity: quantity
+    });
+
+    localStorage.setItem("vedasCart", JSON.stringify(cart));
+
+    document.getElementById("message").textContent =
+    "Product added to your cart successfully!";
+
+    return true;
+}
+
+function buyNow() {
+
+    if (addToCart()) {
+        document.getElementById("message").textContent =
+        "Product saved in cart. Checkout page will be added next.";
+    }
+}
+</script>
+
+</body>
+</html>
