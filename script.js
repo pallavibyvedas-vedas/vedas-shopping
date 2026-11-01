@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const searchInput = document.querySelector(".search-box input");
+    const searchInput = document.getElementById("searchInput");
     const products = document.querySelectorAll(".featured-products .product");
 
     if (!searchInput) return;
@@ -11,13 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         products.forEach(function (product) {
 
-            const title = product.querySelector("h3");
+            const productText = product.textContent.toLowerCase();
 
-            const productName = title
-                ? title.textContent.toLowerCase()
-                : "";
-
-            if (searchText === "" || productName.includes(searchText)) {
+            if (searchText === "" || productText.includes(searchText)) {
                 product.style.display = "";
             } else {
                 product.style.display = "none";
