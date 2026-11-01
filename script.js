@@ -1,9 +1,7 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    // VEDAS Product Search
     const searchInput = document.querySelector(".search-box input");
-    const products = document.querySelectorAll(".product-card");
+    const products = document.querySelectorAll(".featured-products .product");
 
     if (searchInput && products.length) {
 
