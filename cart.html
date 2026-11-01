@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VEDAS | My Cart</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .cart-page {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 18px;
+      margin: 15px 0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-info {
+      flex: 1;
+    }
+
+    .cart-info h3 {
+      margin: 0 0 8px;
+    }
+
+    .remove-btn, .checkout-btn {
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #7A1F2B;
+      color: white;
+    }
+
+    .cart-total {
+      text-align: right;
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 25px;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 40px 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="cart-page">
+    <h1>🛒 My Shopping Cart</h1>
+
+    <div id="cartItems"></div>
+
+    <div id="cartSummary"></div>
+  </main>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem("vedasCart")) || [];
+
+    function showCart() {
+      const cartItems = document.getElementById("cartItems");
+      const cartSummary = document.getElementById("cartSummary");
+
+      if (cart.length === 0) {
+        cartItems.innerHTML = `
+          <div class="empty-cart">
+            <h2>Your Cart is Empty</h2>
+            <p>Add products to your cart first.</p>
+            <a href="index.html">Continue Shopping</a>
+          </div>
+        `;
+        cartSummary.innerHTML = "";
+        return;
+      }
+
+      let total = 0;
+
+      cartItems.innerHTML = cart.map((item, index) => {
+        const price = Number(item.price) || 0;
+        const quantity = Number(item.quantity) || 1;
+        total += price * quantity;
+
+        return `
+          <div class="cart-item">
+            <img src="${item.image || ''}" alt="${item.name || 'Product'}">
+
+            <div class="cart-info">
+              <h3>${item.name || 'Product'}</h3>
+              <p>Price: ₹${price}</p>
+              <p>Quantity: ${quantity}</p>
+              <p>Size: ${item.size || 'N/A'}</p>
+              <p>Color: ${item.color || 'N/A'}</p>
+              <button class="remove-btn" onclick="removeItem(${index})">
+                Remove
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      cartSummary.innerHTML = `
+        <div class="cart-total">Total: ₹${total}</div>
+        <button class="checkout-btn" onclick="goCheckout()">
+          Proceed to Checkout
+        </button>
+      `;
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("vedasCart", JSON.stringify(cart));
+      showCart();
+    }
+
+    function goCheckout() {
+      window.location.href = "checkout.html";
+    }
+
+    showCart();
+  </script>
+
+</body>
+</html>
